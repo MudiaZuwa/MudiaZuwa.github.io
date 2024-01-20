@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Topbar from './Components/Topbar';
+import ThreeScene from './Components/3DComponent';
+import Title from './Components/Title';
+import AboutComponent from './Components/AboutComponent';
+import Projects from './Components/Projects';
+import ContactComponent from './Components/ContactComponent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="body">
+      <Topbar></Topbar>
+      <div className="container">
+        <div className="titleBody">
+          <img src="./IMG_20211218_100019.jpg" />
+          <Title></Title>
+        </div>
+        <AboutComponent></AboutComponent>
+        <Projects></Projects>
+      </div>
+      <ContactComponent></ContactComponent>
     </div>
   );
 }
-
 export default App;
