@@ -1,9 +1,9 @@
-import React from 'react';
-import { Accordion } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faLink } from '@fortawesome/fontawesome-free-solid';
+import React from "react";
+import { Accordion } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faLink } from "@fortawesome/fontawesome-free-solid";
 
 const ProjectChild = ({ project, index }) => {
   return (
@@ -12,10 +12,10 @@ const ProjectChild = ({ project, index }) => {
         <Accordion.Header className="projectHead">
           <FontAwesomeIcon className="projectIcon" icon={faLayerGroup} />
           <h3>{project.name}</h3>
-          <a href={project.githubLink} className="links">
+          <a href={project.githubLink} className="links" target="_blank">
             <FontAwesomeIcon icon={faGithub} />
           </a>
-          <a href={project.pageLink} className="links">
+          <a href={project.pageLink} className="links" target="_blank">
             <FontAwesomeIcon icon={faLink} />
           </a>
         </Accordion.Header>

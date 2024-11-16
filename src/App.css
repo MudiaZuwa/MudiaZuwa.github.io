@@ -170,7 +170,7 @@ p {
 
 .projectHead button:not(.collapsed) {
   background-color: #121212;
-  color: #336699;
+  color: #fff;
 }
 
 .projectHead .links {
@@ -185,6 +185,7 @@ p {
 
 .projectHead h3 {
   background-color: inherit;
+  color: white;
 }
 
 .projectDes p {
