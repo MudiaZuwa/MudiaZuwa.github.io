@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.4408259d.css",
-    "main.js": "/static/js/main.0d316990.js",
+    "main.css": "/static/css/main.ff431b1d.css",
+    "main.js": "/static/js/main.a6907f07.js",
     "static/media/blue swoop gradient by EvgeniyZemelko.jpeg": "/static/media/blue swoop gradient by EvgeniyZemelko.4a69d73aaa8da40c70d8.jpeg",
     "static/media/webrtc-svgrepo-com.svg": "/static/media/webrtc-svgrepo-com.e7221fc570ec8634497e10ebb1ddcc70.svg",
     "static/media/react-2.svg": "/static/media/react-2.e68b35f4774979ae220b1d5d7b345b00.svg",
@@ -16,11 +16,11 @@
     "static/media/css-3.svg": "/static/media/css-3.4e47c3122b8d2476a02f97dcfcb28640.svg",
     "static/media/html-1.svg": "/static/media/html-1.f318c8b1d5945fa9adc827ae94849cb1.svg",
     "static/media/javascript-1.svg": "/static/media/javascript-1.b879f838faf1cb951d1c2230fd933a39.svg",
-    "main.4408259d.css.map": "/static/css/main.4408259d.css.map",
-    "main.0d316990.js.map": "/static/js/main.0d316990.js.map"
+    "main.ff431b1d.css.map": "/static/css/main.ff431b1d.css.map",
+    "main.a6907f07.js.map": "/static/js/main.a6907f07.js.map"
   },
   "entrypoints": [
-    "static/css/main.4408259d.css",
-    "static/js/main.0d316990.js"
+    "static/css/main.ff431b1d.css",
+    "static/js/main.a6907f07.js"
   ]
 }
