@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ff431b1d.css",
-    "main.js": "/static/js/main.57c2e8fa.js",
+    "main.js": "/static/js/main.b9715164.js",
     "static/media/blue swoop gradient by EvgeniyZemelko.jpeg": "/static/media/blue swoop gradient by EvgeniyZemelko.4a69d73aaa8da40c70d8.jpeg",
     "static/media/webrtc-svgrepo-com.svg": "/static/media/webrtc-svgrepo-com.e7221fc570ec8634497e10ebb1ddcc70.svg",
     "static/media/react-2.svg": "/static/media/react-2.e68b35f4774979ae220b1d5d7b345b00.svg",
@@ -17,10 +17,10 @@
     "static/media/html-1.svg": "/static/media/html-1.f318c8b1d5945fa9adc827ae94849cb1.svg",
     "static/media/javascript-1.svg": "/static/media/javascript-1.b879f838faf1cb951d1c2230fd933a39.svg",
     "main.ff431b1d.css.map": "/static/css/main.ff431b1d.css.map",
-    "main.57c2e8fa.js.map": "/static/js/main.57c2e8fa.js.map"
+    "main.b9715164.js.map": "/static/js/main.b9715164.js.map"
   },
   "entrypoints": [
     "static/css/main.ff431b1d.css",
-    "static/js/main.57c2e8fa.js"
+    "static/js/main.b9715164.js"
   ]
 }
