@@ -9,6 +9,7 @@ import { ReactComponent as ElectronJsLogo } from "../assets/electron-svgrepo-com
 import { ReactComponent as FirebaseLogo } from "../assets/firebase-icon.svg";
 import { ReactComponent as GitHubLogo } from "../assets/github-icon-1.svg";
 import { ReactComponent as SocketIoLogo } from "../assets/socket-io-svgrepo-com.svg";
+import { ReactComponent as WebRTCLogo } from "../assets/webrtc-svgrepo-com.svg";
 const PhaserJsLogo = () => <img src="./Phaser Logo Web Quality.png" />;
 
 export const ProjectList = [
@@ -16,14 +17,56 @@ export const ProjectList = [
     name: "Buzz-It",
     githubLink: "https://github.com/MudiaZuwa/BuzzIt",
     pageLink: "https://buzz-it-eight.vercel.app/",
-    code: [ReactLogo, JavaScriptLogo, BootStrapLogo, FirebaseLogo],
+    code: [ReactLogo, JavaScriptLogo, BootStrapLogo, FirebaseLogo, WebRTCLogo],
     description: `Buzz-It is a feature-rich social media platform where users can create and share posts, view and interact with others' content, manage friendships through friend requests, and engage in real-time messaging with friends. To enhance user experience, Buzz-It also includes a gaming hub where users can play a variety of games either solo or with friends.
-      
+
+Additionally, users can make and receive both voice and video calls directly from the Message Tab, a functionality implemented using WebRTC for seamless communication.
+
 Available Games:
 Single Player: Brick Break, Ball Fall, Image Slide Puzzle, TicTacToe, Super TicTacToe
 Multiplayer: Chess, Whot, TicTacToe, Super TicTacToe
 
 Built with React, Firebase, and Bootstrap, Buzz-It combines social interaction and entertainment into one engaging platform.`,
+    intro:
+      "Buzz-It is a dynamic social media and gaming platform, allowing users to share posts, connect with friends, and enjoy solo or multiplayer games. Its integrated WebRTC functionality enables voice and video calls for seamless communication.",
+  },
+  {
+    name: "3D Fighting Demo",
+    githubLink: "https://github.com/MudiaZuwa/3D-Fighting-Demo",
+    pageLink: "https://mudiazuwa.github.io/3D-Fighting-Demo/",
+    downloadLink:
+      "https://drive.google.com/uc?export=download&id=1-1neaJA5uBaN5lILdYu1WZBof6EitEAF",
+    code: [HTMLLogo, CSSLogo, JavaScriptLogo, ThreeJsLogo],
+    description: ` A 3D fighting game demo utilizing Three.js and the Cannon.js physics engine. Players can engage in battles against the computer or challenge their friends. Users have the flexibility to choose their preferred controls. The game showcases various characters with distinct move animations.
+Keyboard Controls:
+WASD: Player movements and menu cursor movements
+J: Punch attacks and select menu option
+L: Kick attacks and back button
+Esc: Toggle Pause Game
+
+Gamepad Controls:
+Joystick/D-Pad: Player movements and menu cursor movements
+A: Punch attacks and select menu option
+B: Kick attacks and back button
+Start: Toggle Pause Game`,
+    intro:
+      "3D Fighting Demo is an interactive game showcasing engaging battles using Three.js and Cannon.js physics, with unique characters, move animations, and customizable controls for both keyboard and gamepad users.",
+  },
+  {
+    name: "ZuwaCart",
+    githubLink: "https://github.com/MudiaZuwa/ZuwaCart",
+    pageLink: "https://zuwacart.vercel.app/",
+    code: [
+      HTMLLogo,
+      CSSLogo,
+      JavaScriptLogo,
+      BootStrapLogo,
+      FirebaseLogo,
+      NodeJsLogo,
+    ],
+    description: `An ecommerce website enabling users to create accounts, register as vendors, and upload their products. Vendor projects are visible to other users, who can order and make payments using bank cards or transfers via Paystack.`,
+    intro:
+      "ZuwaCart is an ecommerce platform where vendors can showcase their products, and users can make purchases securely using Paystack. It offers account registration and vendor management features.",
   },
   {
     name: "3D Space Shooter",
@@ -40,31 +83,6 @@ Gamepad Controls:
 Joystick/D-Pad: Player movements and menu cursor movements
 A: Shoot Projectiles and select menu option
 Start: Toggle Pause Game`,
-  },
-  {
-    name: "3D Fighting Demo",
-    githubLink: "https://github.com/MudiaZuwa/3D-Fighting-Demo",
-    pageLink: "https://mudiazuwa.github.io/3D-Fighting-Demo/",
-    code: [HTMLLogo, CSSLogo, JavaScriptLogo, ThreeJsLogo],
-    description: ` A 3D fighting game demo utilizing Three.js and the Cannon.js physics engine. Players can engage in battles against the computer or challenge their friends. Users have the flexibility to choose their preferred controls. The game showcases various characters with distinct move animations.
-Keyboard Controls:
-WASD: Player movements and menu cursor movements
-J: Punch attacks and select menu option
-L: Kick attacks and back button
-Esc: Toggle Pause Game
-
-Gamepad Controls:
-Joystick/D-Pad: Player movements and menu cursor movements
-A: Punch attacks and select menu option
-B: Kick attacks and back button
-Start: Toggle Pause Game`,
-  },
-  {
-    name: "Mudia Store",
-    githubLink: "https://github.com/MudiaStore/MudiaStore.github.io",
-    pageLink: "https://mudiastore.github.io/ ",
-    code: [HTMLLogo, CSSLogo, JavaScriptLogo, BootStrapLogo, FirebaseLogo],
-    description: `An ecommerce website enabling users to create accounts, register as vendors, and upload their projects. Vendor projects are visible to other users, who can order and make payments using bank cards or transfers via Paystack.`,
   },
   {
     name: "Local Whot Card",

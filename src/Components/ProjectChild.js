@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/fontawesome-free-solid";
 
@@ -18,6 +18,11 @@ const ProjectChild = ({ project, index }) => {
           <a href={project.pageLink} className="links" target="_blank">
             <FontAwesomeIcon icon={faLink} />
           </a>
+          {project.downloadLink && (
+            <a href={project.downloadLink} className="links" target="_blank">
+              <FontAwesomeIcon icon={faDownload} className="fs-4" />
+            </a>
+          )}
         </Accordion.Header>
         <Accordion.Body className="projectDes">
           {project.description && <p>{project.description}</p>}

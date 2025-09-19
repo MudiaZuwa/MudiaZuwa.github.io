@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
 const Title = () => {
   return (
     <div className="title">
-      <h1>Osamudiamen E. Osazuwa</h1>
-      <p>
-        I'm a web developer, specializing in building frontend websites and web
-        games that are fast, accessible, and responsive. With a passion for
-        excellence, I deliver applications that meet your needs and exceed your
-        expectations.
+      <h1 className="fw-bold">
+        I build user-centered products that drive real business outcomes
+      </h1>
+      <p className="fs-5">
+        From seamless designs to functional interfaces, every detail is tailored
+        to meet your goals and create meaningful user experiences
       </p>
       <a href="#contact">
-        <button className="contact">Contact Me</button>
+        <button className="contact contact-link">Contact Me</button>
       </a>
     </div>
   );

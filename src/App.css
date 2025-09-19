@@ -1,24 +1,48 @@
 * {
   background-color: #121212;
 }
+
+.top {
+  background-image: url("./assets/blue swoop gradient by EvgeniyZemelko.jpeg");
+  background-size: cover; /* Optional: Adjusts the size of the background */
+  background-position: center; /* Optional: Centers the background image */
+}
+
 nav a {
   color: white;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+.navbar * {
+  background-color: inherit;
 }
 
 nav,
 nav .container,
 .navbar-toggler-icon,
 nav .collapse {
-  background-color: #336699;
+  background-color: inherit;
 }
 
 nav button {
   border-color: white;
   color: white;
 }
+.navbar-nav {
+  background-color: inherit;
+  width: 100%;
+}
+
+.contact-link {
+  border: 3px solid white;
+  color: white;
+  border-radius: 30px;
+}
 
 .navbar-nav .nav-link {
-  background-color: #336699;
+  background-color: inherit;
   color: white;
 }
 
@@ -34,11 +58,18 @@ nav button {
 }
 
 .titleBody {
+  background-color: transparent;
+}
+
+.titleBody .container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  margin: 50px 5px;
+  padding: 50px 5px;
+}
+
+.titleBody * {
+  background-color: transparent;
 }
 
 @media (max-width: 769px) {
@@ -47,52 +78,43 @@ nav button {
   }
 }
 
-.titleBody img {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 .title h1,
-p {
+.title p {
   color: white;
   max-width: 500px;
   margin: 10px;
+  text-align: center;
 }
 
 .title {
   display: flex;
   flex-direction: column;
-  align-items: end;
   justify-content: center;
+  align-items: center;
 }
 
 .title .contact {
-  background-color: #336699;
-  border: #121212;
-  color: white;
-  border-radius: 5px;
   font-size: 18px;
   padding: 10px;
   margin: 20px;
   text-decoration: none;
+  width: 200px;
 }
 
 .title a {
   text-decoration: none;
+  width: fit-content;
 }
 
 .headings {
   background-color: #121212;
-  border: 2px solid #336699;
+  border-bottom: 2px solid;
+  border-color: #336699 !important;
   color: white;
   width: fit-content;
   min-width: 200px;
-  border-radius: 5px;
-  font-size: 25px;
   padding: 15px;
-  margin: 30px;
+  margin: 30px 0;
   text-align: center;
 }
 
@@ -102,9 +124,7 @@ p {
 }
 
 #about p {
-  width: 100%;
-  max-width: fit-content;
-  /* margin: auto; */
+  color: white;
 }
 
 #about {
@@ -113,37 +133,33 @@ p {
   margin-right: auto;
 }
 
-.programsParent {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: center;
+#about h1 {
+  color: white;
+  max-width: 500px;
+  margin: 10px 0;
 }
 
-@media (min-width: 640px) {
-  .programsParent {
-    justify-content: space-around;
-  }
+#about img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .programChild svg,
 .programChild img {
-  width: 25px;
-  height: 25px;
+  width: 250px;
+  height: 250px;
   object-fit: fill;
 }
 
-.programs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  max-width: 360px;
+.carousel-indicators {
+  background-color: transparent;
 }
 
-@media (max-width: 341px) {
-  .programs {
-    justify-content: center;
-  }
+#services h3,
+#services li {
+  color: white;
 }
 
 .programChild {
@@ -152,13 +168,17 @@ p {
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  width: 100px;
-  height: 90px;
+  width: 300px;
+  height: 300px;
   margin: 3px;
 }
 
 .accordion-item {
   border-radius: 60px;
+}
+
+.card * {
+  background-color: inherit;
 }
 
 .projectHead button {
@@ -190,6 +210,7 @@ p {
 
 .projectDes p {
   /* color: white; */
+
   width: inherit;
   max-width: inherit;
   margin: 0;
@@ -217,7 +238,6 @@ p {
 .accordion {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
 }
 
 .accordion .projectChild {
@@ -238,7 +258,8 @@ p {
   color: #336699;
 }
 
-#contact p {
+#contact p,
+#contact a {
   color: #9d9d9d;
   text-align: center;
 }
