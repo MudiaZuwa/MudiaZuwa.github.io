@@ -1,15 +1,15 @@
-import { ReactComponent as HTMLLogo } from "../assets/html-1.svg";
-import { ReactComponent as CSSLogo } from "../assets/css-3.svg";
-import { ReactComponent as JavaScriptLogo } from "../assets/javascript-1.svg";
-import { ReactComponent as BootStrapLogo } from "../assets/bootstrap-5-1.svg";
-import { ReactComponent as ReactLogo } from "../assets/react-2.svg";
-import { ReactComponent as NodeJsLogo } from "../assets/nodejs-3.svg";
-import { ReactComponent as ThreeJsLogo } from "../assets/threejs-1.svg";
-import { ReactComponent as ElectronJsLogo } from "../assets/electron-svgrepo-com.svg";
-import { ReactComponent as FirebaseLogo } from "../assets/firebase-icon.svg";
-import { ReactComponent as GitHubLogo } from "../assets/github-icon-1.svg";
-import { ReactComponent as SocketIoLogo } from "../assets/socket-io-svgrepo-com.svg";
-import { ReactComponent as WebRTCLogo } from "../assets/webrtc-svgrepo-com.svg";
+import HTMLLogo from "@/assets/html-1.svg";
+import CSSLogo from "@/assets/css-3.svg";
+import JavaScriptLogo from "@/assets/javascript-1.svg";
+import BootStrapLogo from "@/assets/bootstrap-5-1.svg";
+import ReactLogo from "@/assets/react-2.svg";
+import NodeJsLogo from "@/assets/nodejs-3.svg";
+import ThreeJsLogo from "@/assets/threejs-1.svg";
+import ElectronJsLogo from "@/assets/electron-svgrepo-com.svg";
+import FirebaseLogo from "@/assets/firebase-icon.svg";
+import GitHubLogo from "@/assets/github-icon-1.svg";
+import SocketIoLogo from "@/assets/socket-io-svgrepo-com.svg";
+import WebRTCLogo from "@/assets/webrtc-svgrepo-com.svg";
 const PhaserJsLogo = () => <img src="./Phaser Logo Web Quality.png" />;
 
 export const ProjectList = [
