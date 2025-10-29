@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import-normalize;
+
+@theme {
+  --color-primary: #135bec;
+  --color-backgroundlight: #f6f6f8;
+  --color-backgrounddark: #101622;
+}

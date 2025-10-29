@@ -1,0 +1,6 @@
+ignoredBuiltDependencies:
+  - protobufjs
+
+onlyBuiltDependencies:
+  - protobufjs
+  - sharp
