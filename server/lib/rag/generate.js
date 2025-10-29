@@ -1,12 +1,7 @@
-import axios from "axios";
-import dotenv from "dotenv";
-
-dotenv.config();
-
 const LLM_URL = process.env.LLAMA_API_URL;
 const API_KEY = process.env.API_KEY;
 
-export const generateAnswer = async (context, query, userId) => {
+export const generateAnswer = async (context, query, userId, onToken) => {
   const prompt = `
 You are Mudia Zuwa's AI portfolio assistant.
 Use the context below to answer accurately and concisely.
@@ -17,33 +12,36 @@ ${context}
 User: ${query}
 `;
 
-  try {
-    const response = await axios.post(
-      `${LLM_URL}/chat/${`user-${userId}`}`,
-      {
-        message: prompt,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        timeout: 60000,
-      }
-    );
+  const response = await fetch(`${LLM_URL}/chat/user-${userId}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ message: prompt, system_instructions: "" }),
+  });
 
-    const reply = response.data.reply?.trim();
-    let parsed;
+  if (!response.body) throw new Error("No response body from LLM server");
 
-    try {
-      parsed = JSON.parse(reply);
-    } catch {}
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder("utf-8");
+  let done = false;
 
-    return reply || "Sorry, I couldn't generate a response.";
-  } catch (err) {
-    console.error("❌ LLM error:", err.message);
-    return {
-      answer: "Sorry, I couldn't process that at the moment.",
-    };
+  while (!done) {
+    const { value, done: readerDone } = await reader.read();
+    done = readerDone;
+
+    if (value) {
+      const chunk = decoder.decode(value, { stream: true });
+
+      chunk.split("\n").forEach((line) => {
+        if (line.trim()) {
+          try {
+            const tokenObj = JSON.parse(line);
+            if (onToken) onToken(tokenObj.token);
+          } catch {}
+        }
+      });
+    }
   }
 };
