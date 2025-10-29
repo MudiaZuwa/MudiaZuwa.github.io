@@ -96,17 +96,26 @@ const ChatWindow = () => {
   return (
     <>
       {!isOpen && (
-        <button
+        <div
           onClick={() => setIsOpen(true)}
           className="
-            fixed bottom-6 right-6 
-            bg-primary 
-            text-white p-4 rounded-full shadow-lg 
-            hover:opacity-90 transition-all z-40
-          "
+    fixed bottom-6 right-6 
+    bg-primary 
+    text-white 
+    w-14 h-14 
+    flex items-center justify-center
+    rounded-full shadow-lg 
+    hover:opacity-90 transition-all z-40
+    cursor-pointer
+  "
         >
-          <span className="material-symbols-outlined text-2xl">chat</span>
-        </button>
+          <span
+            className="material-symbols-outlined text-2xl 
+    cursor-pointer"
+          >
+            chat
+          </span>
+        </div>
       )}
 
       {isOpen && (
