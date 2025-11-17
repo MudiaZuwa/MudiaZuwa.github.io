@@ -4,7 +4,7 @@ const genAI = new GoogleGenAI({});
 
 const sessions = new Map();
 const chatMap = new Map();
-const timeoutMs = 60 * 60 * 1000; 
+const timeoutMs = 60 * 60 * 1000;
 
 const getSession = (userId) => {
   if (!sessions.has(userId)) {
@@ -15,14 +15,16 @@ const getSession = (userId) => {
 
 const getOrCreateChat = async (userId) => {
   if (!chatMap.has(userId)) {
-    const systemPrompt = `
+    const systemPrompt = {
+      text: `
 You are Mudia Zuwa's AI portfolio assistant.
 Use the context given to answer accurately and concisely.
 If unsure, say you don't know.
 Important rules:
 1. Do not use bold, italics, asterisks (**), underscores (_), backticks (\`), or any other text formatting in your replies.
 2. Always write in plain text only.
-`;
+`,
+    };
 
     const chat = await genAI.chats.create({
       model: "gemini-2.5-flash",
@@ -70,8 +72,8 @@ User: ${query}
 
   const responseStream = await chat.sendMessageStream({ message: prompt });
 
-  for await (const chunk of responseStream.stream) {
-    const token = chunk.text();
+  for await (const chunk of responseStream) {
+    const token = chunk.text;
     if (token && onToken) onToken(token);
   }
 };
