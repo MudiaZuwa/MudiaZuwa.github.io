@@ -5,6 +5,7 @@
     "server": "nodemon --max-old-space-size=2048 server.js"
   },
   "dependencies": {
+    "@google/genai": "^1.29.1",
     "@google/generative-ai": "^0.24.1",
     "@langchain/community": "^1.0.0",
     "@pinecone-database/pinecone": "^6.1.2",

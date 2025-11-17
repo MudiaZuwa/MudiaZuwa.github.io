@@ -98,8 +98,8 @@ const App = () => {
           <Projects />
           <About />
           <ChatWindow />
+          <Contact />
         </Container>
-        <Contact />
       </div>
     </>
   );
