@@ -20,7 +20,6 @@ app.post("/api/chat", async (req, res) => {
   try {
     const { query, userId } = req.body;
     if (!query) return res.status(400).json({ error: "Missing 'query'." });
-    console.log(query, userId)
 
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache");

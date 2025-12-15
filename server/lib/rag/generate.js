@@ -1,79 +1,81 @@
-import { GoogleGenAI } from "@google/genai";
+import Groq from "groq-sdk";
 
-const genAI = new GoogleGenAI({});
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-const sessions = new Map();
-const chatMap = new Map();
-const timeoutMs = 60 * 60 * 1000;
-
-const getSession = (userId) => {
-  if (!sessions.has(userId)) {
-    sessions.set(userId, { _timeout: null });
-  }
-  return sessions.get(userId);
-};
-
-const getOrCreateChat = async (userId) => {
-  if (!chatMap.has(userId)) {
-    const systemPrompt = {
-      text: `
-You are Mudia Zuwa's AI portfolio assistant.
+const SYSTEM_PROMPT = `You are Mudia Zuwa's AI portfolio assistant.
 Use the context given to answer accurately and concisely.
 If unsure, say you don't know.
 Important rules:
 1. Do not use bold, italics, asterisks (**), underscores (_), backticks (\`), or any other text formatting in your replies.
-2. Always write in plain text only.
-`,
-    };
+2. Always write in plain text only.`;
 
-    const chat = await genAI.chats.create({
-      model: "gemini-2.5-flash",
-      config: {
-        systemInstruction: { parts: [systemPrompt] },
-      },
+// Store conversation history per user
+const conversationHistory = new Map();
+const timeoutMs = 60 * 60 * 1000; // 1 hour
+
+const getOrCreateHistory = (userId) => {
+  if (!conversationHistory.has(userId)) {
+    conversationHistory.set(userId, {
+      messages: [],
+      _timeout: null,
     });
-    chatMap.set(userId, chat);
   }
-
-  setChatTimeout(userId);
-  return chatMap.get(userId);
+  return conversationHistory.get(userId);
 };
 
 const setChatTimeout = (userId) => {
-  const session = sessions.get(userId);
+  const history = conversationHistory.get(userId);
 
-  if (session?._timeout) {
-    clearTimeout(session._timeout);
-    session._timeout = null;
+  if (history?._timeout) {
+    clearTimeout(history._timeout);
+    history._timeout = null;
   }
 
-  const chatSession = chatMap.get(userId);
-
-  if (chatSession?._timeout) {
-    clearTimeout(chatSession._timeout);
-    chatSession._timeout = null;
-  }
-
-  chatSession._timeout = setTimeout(() => {
-    chatMap.delete(userId);
+  history._timeout = setTimeout(() => {
+    conversationHistory.delete(userId);
   }, timeoutMs);
 };
 
 export const generateAnswer = async (context, query, userId, onToken) => {
-  getSession(userId);
-  const chat = await getOrCreateChat(userId);
+  const history = getOrCreateHistory(userId);
+  setChatTimeout(userId);
 
-  const prompt = `
-Context:
+  const userMessage = `Context:
 ${context}
 
-User: ${query}
-`;
+User: ${query}`;
 
-  const responseStream = await chat.sendMessageStream({ message: prompt });
+  // Build messages array with system prompt, history, and new user message
+  const messages = [
+    { role: "system", content: SYSTEM_PROMPT },
+    ...history.messages,
+    { role: "user", content: userMessage },
+  ];
 
-  for await (const chunk of responseStream) {
-    const token = chunk.text;
-    if (token && onToken) onToken(token);
+  const stream = await groq.chat.completions.create({
+    messages,
+    model: "llama-3.3-70b-versatile",
+    temperature: 0.5,
+    max_completion_tokens: 1024,
+    stream: true,
+  });
+
+  let fullResponse = "";
+
+  for await (const chunk of stream) {
+    const token = chunk.choices[0]?.delta?.content;
+    if (token) {
+      fullResponse += token;
+      if (onToken) onToken(token);
+    }
+  }
+
+  history.messages.push(
+    { role: "user", content: userMessage },
+    { role: "assistant", content: fullResponse }
+  );
+
+  if (history.messages.length > 20) {
+    history.messages = history.messages.slice(-20);
   }
 };
