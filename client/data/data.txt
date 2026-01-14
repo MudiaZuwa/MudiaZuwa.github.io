@@ -1,0 +1,105 @@
+🧑‍💻 About Osamudiamen E. Osazuwa (Mudia Zuwa)
+Name: Osamudiamen E. Osazuwa
+Alias: Mudia Zuwa
+Portfolio: https://mudiazuwa.vercel.app/
+GitHub: https://github.com/mudiazuwa
+LinkedIn: https://linkedin.com/in/mudiazuwa
+X (Twitter): https://x.com/mudia_zuwa
+
+🧠 Bio
+I am Osamudiamen E. Osazuwa, also known as Mudia Zuwa — a passionate web developer and creative technologist focused on building engaging web experiences, interactive games, and innovative solutions.
+My projects blend technical depth, interactivity, and usability, ranging from ecommerce ecosystems and social media platforms to multiplayer games and blockchain integrations.
+With a background in Geology, I bring analytical thinking and precision to my code, translating complex ideas into structured, functional, and visually engaging experiences. I love exploring new technologies, particularly where creativity meets logic — whether that’s real-time apps, 3D graphics, or experimental web tools.
+Beyond coding, I enjoy gaming, connecting with people, and researching emerging technologies that push the boundaries of what’s possible on the web.
+
+⚙️ Core Skills & Technologies
+I work across the full stack, with experience in both frontend and backend technologies.
+
+Languages & Frameworks:
+HTML5, CSS3, JavaScript (ES6+)
+React.js, Node.js, Express.js
+Three.js (3D Web Graphics)
+Electron.js (Desktop Apps)
+Phaser.js (2D Game Framework)
+Solidity (Smart Contracts)
+LangChain.js (AI & LLM Integrations)
+
+Tools & Platforms:
+Firebase (Authentication, Realtime DB, Hosting)
+MongoDB (Database)
+Socket.io (Real-time Communication)
+WebRTC (Voice & Video Calls)
+Tailwind CSS, Bootstrap (UI Design)
+Git & GitHub (Version Control)
+Paystack (Payment Integration)
+Biconomy & Web3Auth (Web3 Infrastructure)
+
+🚀 Major Projects
+🛍️ QuickXMarket
+Live: https://quickxmarket.com.ng/
+Stack: React, Node.js, MongoDB, Tailwind, Socket.io
+A hyperlocal ecommerce and delivery platform connecting customers, vendors, riders, and admins.
+It includes multiple platforms:
+2 websites (customer & vendor)
+4 mobile apps
+WhatsApp & Telegram bots (Quickie) for ordering via chat or voice
+Goal: Simplify local commerce for students and small businesses — starting from the University of Benin.
+
+💬 Buzz-It
+GitHub: https://github.com/MudiaZuwa/BuzzIt
+Live: https://buzz-it-eight.vercel.app/
+Stack: React, Firebase, Bootstrap, JavaScript, WebRTC
+A social media and gaming hub combining posts, friendships, real-time messaging, and video/voice calls — plus mini-games like Chess, Whot, and TicTacToe.
+
+💰 MudiaZuwa Wallet
+GitHub: https://github.com/MudiaZuwa/MudiaZuwa-Wallet
+Live: https://mudiazuwa-wallet.vercel.app/
+Stack: React, Node.js, Tailwind, Solidity
+An experimental crypto wallet built around a custom ERC-20 token.
+Features:
+Web3Auth login (Google/Apple)
+Biconomy smart wallets for gasless transactions
+Telegram faucet bot for token testing
+Custom Paymaster contract for token-based gas fees
+
+🕹️ 3D Fighting Demo
+GitHub: https://github.com/MudiaZuwa/3D-Fighting-Demo
+Live: https://mudiazuwa.github.io/3D-Fighting-Demo/
+Stack: HTML, CSS, JavaScript, Three.js
+Description: An interactive 3D fighting game demo utilizing Three.js and the Cannon.js physics engine. Players can battle against the computer or friends, choosing between keyboard or gamepad controls. It showcases various characters with distinct move animations.
+
+🛒 ZuwaCart
+GitHub: https://github.com/MudiaZuwa/ZuwaCart
+Live: https://zuwacart.vercel.app/
+Stack: HTML, CSS, JavaScript, Bootstrap, Firebase, Node.js
+An ecommerce website where vendors can showcase products, and users can purchase via Paystack.
+
+🎮 Game & Experimental Projects
+Local Whot Card: Multiplayer card game using React + Socket.io
+3D Space Shooter: Three.js-based shooter with physics and scoring system
+Phaser Endless Runner: Fast-paced 2D game built with Phaser 3
+MMO Platformer: Firebase-powered multiplayer 2D world
+Canvas Chess: Two-player chess on HTML canvas
+2D Fighting Game: Dual-player fighting experience
+Ball Fall, Image Slide Puzzle: Simple but fun HTML5 mini-games
+These projects showcase versatility — from real-time multiplayer logic to creative physics-based gameplay.
+
+🤖 AI & Experimental Work
+Recently, I’ve begun integrating LangChain.js into my projects to explore AI-driven chatbots, contextual search, and knowledge retrieval systems (RAG).
+My focus is on bridging interactive UI/UX with intelligent backend logic, enabling users to experience dynamic, conversational interfaces.
+
+💬 Philosophy
+“Technology should be interactive, intuitive, and inspiring.
+My goal is to craft digital experiences that merge functionality with imagination.”
+
+🧭 Interests
+Creative web development
+Real-time systems & WebRTC
+Game design & interactive media
+Blockchain & decentralized applications
+AI & LLM integration with LangChain.js
+Experimenting with new frameworks and tools
+
+🪪 Summary
+Osamudiamen “Mudia” Osazuwa is a versatile full-stack web developer and creative builder with hands-on experience in React, Node.js, Web3, Three.js, Socket.io, and LangChain.js.
+He’s passionate about crafting interactive, high-performance web apps and games, exploring emerging technologies, and developing solutions that make life more engaging and connected.

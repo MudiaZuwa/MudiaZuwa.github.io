@@ -5,7 +5,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
-  output: "export",
+  serverExternalPackages: ["@xenova/transformers"],
   webpack(config) {
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
 
