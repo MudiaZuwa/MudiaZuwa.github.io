@@ -1,18 +1,42 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
+import { motion } from "framer-motion";
 import TechStack from "./TechStack";
 
 const About = () => {
   return (
     <section id="about" className="p-4">
-      <h2 className="text-white text-[28px] font-bold mb-6">About Me</h2>
-      <div className="flex flex-col md:flex-row gap-8 items-center bg-[#192233]/70 p-8 rounded-xl border border-[#324467]/50">
-        <img
+      <motion.h2
+        className="text-white text-[28px] font-bold mb-6"
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5 }}
+      >
+        About Me
+      </motion.h2>
+      <motion.div
+        className="flex flex-col md:flex-row gap-8 items-center bg-overlay/70 p-8 rounded-xl border border-border"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.img
           src="Image_xdr2idxdr2idxdr2.png"
           alt="Osamudiamen Osazuwa"
-          className="rounded-full w-48 h-48 object-cover border-4 border-primary/50 shadow-lg"
+          className="rounded-full w-48 h-48 object-cover border-4 border-brand-frontend/50 shadow-lg"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          whileHover={{ scale: 1.05 }}
         />
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <p className="text-[#E0E0E0]">
             Hello! I am Osamudiamen E. Osazuwa, also known as Mudia Zuwa, a web
             developer passionate about creating engaging web experiences,
@@ -31,8 +55,8 @@ const About = () => {
             make a real impact, enhance user experiences, and bring ideas to
             life through technology.
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <TechStack />
     </section>
   );

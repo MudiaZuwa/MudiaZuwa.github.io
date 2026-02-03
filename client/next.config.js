@@ -6,6 +6,11 @@ const __dirname = path.dirname(__filename);
 
 export default {
   serverExternalPackages: ["@xenova/transformers"],
+  turbopack: {
+    resolveAlias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
   webpack(config) {
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
 

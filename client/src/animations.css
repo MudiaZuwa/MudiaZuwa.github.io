@@ -30,17 +30,14 @@
   }
 }
 
-/* Initial state */
 .service-item {
   opacity: 0;
   transform: translateX(-20px);
 }
 
-/* Animated state */
 .service-item.animate {
   animation: fadeInRight 0.6s ease forwards;
 }
-
 
 @keyframes fadeInRight {
   to {
@@ -63,38 +60,15 @@
 }
 
 .card {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .card:hover {
   transform: translateY(-12px) scale(1.03);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
 }
-
-/* .projectDes p {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.5s ease;
-}
-
-.card:hover .projectDes p {
-  opacity: 1;
-  max-height: 500px;
-}
-
-
-.accordion-item {
-  overflow: hidden;
-  transition: max-height 0.6s ease, opacity 0.6s ease;
-  max-height: 0;
-  opacity: 0;
-}
-
-.accordion-item.active {
-  max-height: 1000px;
-  opacity: 1;
-} */
 
 #about img {
   transition: transform 0.5s ease;
@@ -122,13 +96,13 @@
 }
 
 .contact-link:hover {
-  background-color: #4ea8de;
-  color: #0f1116;
+  background-color: #61dafb;
+  color: #050506;
   transform: scale(1.05);
 }
 
 .top {
-  background: linear-gradient(-45deg, #445e93, #468f8a, #7a7f8c, #336699);
+  background: linear-gradient(-45deg, #1c3c3e, #2d5d61, #1c3c3e, #61dafb);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
 }
@@ -160,12 +134,14 @@
 }
 
 .topSocial a svg {
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .topSocial a:hover svg {
   transform: scale(1.3) rotate(5deg);
-  color: #336699;
+  color: #61dafb;
 }
 
 .contacts .contact {
@@ -196,12 +172,12 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #336699;
+  background: #61dafb;
   transition: width 0.3s ease;
 }
 
 #contact .nav-link:hover {
-  color: #336699;
+  color: #61dafb;
 }
 
 #contact .nav-link:hover::after {

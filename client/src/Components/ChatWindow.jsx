@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 
 const ChatWindow = () => {
@@ -92,113 +93,112 @@ const ChatWindow = () => {
 
   return (
     <>
-      {!isOpen && (
-        <div
-          onClick={() => setIsOpen(true)}
-          className="
-    fixed bottom-6 right-6 
-    bg-primary 
-    text-white 
-    w-14 h-14 
-    flex items-center justify-center
-    rounded-full shadow-lg 
-    hover:opacity-90 transition-all z-40
-    cursor-pointer
-  "
-        >
-          <span
-            className="material-symbols-outlined text-2xl 
-    cursor-pointer"
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.div
+            onClick={() => setIsOpen(true)}
+            className="fixed bottom-6 right-6 bg-gradient-to-r from-brand-agent to-brand-frontend text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg hover:opacity-90 transition-all z-40 cursor-pointer"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
-            chat
-          </span>
-        </div>
-      )}
-
-      {isOpen && (
-        <div
-          className="
-            fixed bottom-0 right-0 
-            md:bottom-6 md:right-6 
-            w-full h-[70vh] 
-            sm:w-[380px] sm:h-[480px]
-            bg-[#0f1729]/95 backdrop-blur-md 
-            border-t border-white/10 md:border md:rounded-2xl 
-            shadow-lg flex flex-col overflow-hidden z-50
-            animate-fadeIn
-          "
-        >
-          {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/5">
-            <h3 className="text-white font-semibold text-sm">Ask Mudia AI</h3>
-            <span
-              onClick={() => setIsOpen(false)}
-              className="material-symbols-outlined text-[#92a4c9] text-lg cursor-pointer hover:text-primary transition"
-            >
-              close
+            <span className="material-symbols-outlined text-2xl cursor-pointer">
+              chat
             </span>
-          </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          {/* Chat Body */}
-          <div
-            ref={chatBodyRef}
-            className="flex-1 overflow-y-auto p-4 space-y-4"
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed bottom-0 right-0 md:bottom-6 md:right-6 w-full h-[70vh] sm:w-[380px] sm:h-[480px] bg-tungsten/95 backdrop-blur-md border-t border-border md:border md:rounded-2xl shadow-lg flex flex-col overflow-hidden z-50"
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
           >
-            {/* Default Bot Greeting */}
-            <div className="flex items-start gap-2">
-              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                M
-              </div>
-              <div className="bg-white/10 text-white text-sm px-3 py-2 rounded-lg max-w-[75%]">
-                Hey there 👋 — I'm Mudia's portfolio assistant! How can I help
-                you?
-              </div>
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-overlay/50">
+              <h3 className="text-white font-semibold text-sm">Ask Mudia AI</h3>
+              <span
+                onClick={() => setIsOpen(false)}
+                className="material-symbols-outlined text-muted text-lg cursor-pointer hover:text-brand-frontend transition"
+              >
+                close
+              </span>
             </div>
 
-            {/* Render Chat Messages */}
-            {messages.map((msg, index) =>
-              msg.role === "user" ? (
-                <div key={index} className="flex justify-end">
-                  <div className="bg-primary text-white text-sm px-3 py-2 rounded-lg max-w-[75%]">
-                    {msg.content}
-                  </div>
-                </div>
-              ) : (
-                <div key={index} className="flex items-start gap-2">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                    M
-                  </div>
-                  <div className="bg-white/10 text-white text-sm px-3 py-2 rounded-lg max-w-[75%] whitespace-pre-wrap">
-                    {msg.content ||
-                      (loading && index === messages.length - 1 ? "..." : "")}
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-
-          {/* Chat Input */}
-          <form
-            className="p-3 border-t border-white/10 bg-white/5 flex items-center gap-2"
-            onSubmit={sendMessage}
-          >
-            <input
-              type="text"
-              placeholder="Type a message..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 bg-transparent outline-none text-sm text-white placeholder-[#92a4c9]"
-            />
-            <button
-              className="bg-primary px-3 py-2 rounded-lg text-white text-sm font-medium hover:opacity-90 transition disabled:opacity-50"
-              type="submit"
-              disabled={loading}
+            <div
+              ref={chatBodyRef}
+              className="flex-1 overflow-y-auto p-4 space-y-4"
             >
-              Send
-            </button>
-          </form>
-        </div>
-      )}
+              <div className="flex items-start gap-2">
+                <div className="w-8 h-8 rounded-full bg-brand-frontend/20 flex items-center justify-center text-brand-frontend font-bold">
+                  M
+                </div>
+                <div className="bg-overlay text-white text-sm px-3 py-2 rounded-lg max-w-[75%]">
+                  Hey there — I'm Mudia's portfolio assistant! How can I help
+                  you?
+                </div>
+              </div>
+
+              {messages.map((msg, index) =>
+                msg.role === "user" ? (
+                  <motion.div
+                    key={index}
+                    className="flex justify-end"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="bg-gradient-to-r from-brand-agent to-brand-frontend text-white text-sm px-3 py-2 rounded-lg max-w-[75%]">
+                      {msg.content}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key={index}
+                    className="flex items-start gap-2"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="w-8 h-8 rounded-full bg-brand-frontend/20 flex items-center justify-center text-brand-frontend font-bold">
+                      M
+                    </div>
+                    <div className="bg-overlay text-white text-sm px-3 py-2 rounded-lg max-w-[75%] whitespace-pre-wrap">
+                      {msg.content ||
+                        (loading && index === messages.length - 1 ? "..." : "")}
+                    </div>
+                  </motion.div>
+                ),
+              )}
+            </div>
+
+            <form
+              className="p-3 border-t border-border bg-overlay/50 flex items-center gap-2"
+              onSubmit={sendMessage}
+            >
+              <input
+                type="text"
+                placeholder="Type a message..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="flex-1 bg-transparent outline-none text-sm text-white placeholder-muted"
+              />
+              <button
+                className="bg-gradient-to-r from-brand-agent to-brand-frontend px-3 py-2 rounded-lg text-white text-sm font-medium hover:opacity-90 transition disabled:opacity-50"
+                type="submit"
+                disabled={loading}
+              >
+                Send
+              </button>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

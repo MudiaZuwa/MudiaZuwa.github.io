@@ -1,14 +1,11 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 
 const Topbar = () => {
   return (
-    <header className="sticky top-5 z-50 flex items-center justify-between whitespace-nowrap border border-solid border-white/10 bg-black/30 backdrop-blur-md px-10 py-3 rounded-xl">
+    <header className="sticky top-5 z-50 flex items-center justify-between whitespace-nowrap border border-solid border-border bg-tungsten/80 backdrop-blur-md px-10 py-3 rounded-xl">
       <a className="flex items-center gap-4 text-white" href="#">
-        <div className="size-6 text-primary">
-          {/* Logo SVG */}
+        <div className="size-6 text-brand-frontend">
           <svg
             fill="none"
             viewBox="0 0 48 48"
@@ -38,26 +35,26 @@ const Topbar = () => {
         <div className="flex items-center gap-9">
           <a
             href="#services"
-            className="text-white text-sm font-medium hover:text-primary transition-colors"
+            className="text-white text-sm font-medium hover:text-brand-frontend transition-colors"
           >
             Services
           </a>
           <a
             href="#projects"
-            className="text-white text-sm font-medium hover:text-primary transition-colors"
+            className="text-white text-sm font-medium hover:text-brand-frontend transition-colors"
           >
             Projects
           </a>
           <a
             href="#about"
-            className="text-white text-sm font-medium hover:text-primary transition-colors"
+            className="text-white text-sm font-medium hover:text-brand-frontend transition-colors"
           >
             About
           </a>
         </div>
         <a
           href="#contact"
-          className="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-colors"
+          className="flex items-center justify-center h-10 px-4 bg-gradient-to-r from-brand-agent to-brand-frontend text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all hover:scale-105"
         >
           Contact
         </a>

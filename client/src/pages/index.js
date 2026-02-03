@@ -84,7 +84,7 @@ const App = () => {
         />
       </Head>
 
-      <div className="bg-backgroundDark dark:bg-backgrounddark font-display text-[#E0E0E0]">
+      <div className="bg-oil-black font-display text-[#E0E0E0]">
         <div className="top">
           <Topbar />
           <div className="titleBody">

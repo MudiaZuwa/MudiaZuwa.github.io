@@ -6,7 +6,11 @@
 @import-normalize;
 
 @theme {
-  --color-primary: #135bec;
-  --color-backgroundlight: #f6f6f8;
-  --color-backgrounddark: #101622;
+  --color-oil-black: #050506;
+  --color-tungsten: #0d0d0f;
+  --color-overlay: #111114;
+  --color-border: #2d5d61;
+  --color-brand-frontend: #61dafb;
+  --color-brand-agent: #1c3c3e;
+  --color-muted: #8ba5a7;
 }
