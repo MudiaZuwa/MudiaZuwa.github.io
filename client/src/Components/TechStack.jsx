@@ -88,7 +88,7 @@ const TechStack = () => {
       {secondaryTechs.length > 0 && (
         <motion.button
           onClick={() => setShowMore(!showMore)}
-          className="mt-6 px-4 py-2 text-sm font-medium text-muted hover:text-white border border-border rounded-lg hover:border-brand-frontend/50 transition-colors flex items-center gap-2 mx-auto"
+          className="mt-10 px-4 py-2 text-sm font-medium text-muted hover:text-white border border-border rounded-lg hover:border-brand-frontend/50 transition-colors flex items-center gap-2 mx-auto"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
