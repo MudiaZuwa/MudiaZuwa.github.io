@@ -6,12 +6,12 @@ export default {
     extend: {
       colors: {
         "oil-black": "#050506",
-        tungsten: "#18181b",
-        overlay: "#1c3c3e",
+        tungsten: "#0d0d0f",
+        overlay: "#111114",
         border: "#2d5d61",
         "brand-frontend": "#61dafb",
         "brand-agent": "#1c3c3e",
-        muted: "#8ba5a7",
+        muted: "#b8d0d2",
       },
       fontFamily: {
         display: ["Space Grotesk", "sans-serif"],
