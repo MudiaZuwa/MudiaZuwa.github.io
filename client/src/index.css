@@ -5,6 +5,18 @@
 
 @import-normalize;
 
+/* Standard CSS variables for cross-browser compatibility */
+:root {
+  --color-oil-black: #050506;
+  --color-tungsten: #0d0d0f;
+  --color-overlay: #111114;
+  --color-border: #2d5d61;
+  --color-brand-frontend: #61dafb;
+  --color-brand-agent: #1c3c3e;
+  --color-muted: #b8d0d2;
+}
+
+/* Tailwind v4 theme extension */
 @theme {
   --color-oil-black: #050506;
   --color-tungsten: #0d0d0f;
