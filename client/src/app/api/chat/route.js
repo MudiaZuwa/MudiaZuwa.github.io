@@ -1,5 +1,7 @@
 import { runRAGPipeline } from "@/lib/rag/pipeline";
 
+// Force dynamic to skip static page data collection during build
+export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 export async function POST(request) {
