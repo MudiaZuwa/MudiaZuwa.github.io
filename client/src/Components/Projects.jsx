@@ -33,9 +33,9 @@ const Projects = () => {
   return (
     <div>
       {/* Featured Projects - Full Cards */}
-      <section className="flex flex-col gap-4" id="projects">
+      <section className="py-6" id="projects">
         <motion.h2
-          className="text-white text-[28px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5"
+          className="text-white text-[28px] font-bold mb-6"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -56,8 +56,8 @@ const Projects = () => {
               key={project.name}
               variants={cardVariants}
               className={`flex flex-col gap-4 rounded-xl border border-border bg-overlay/70 overflow-hidden group transition-all duration-300 ${index % 2 === 0
-                  ? "hover:shadow-[0_0_30px_rgba(97,218,251,0.2)] hover:border-brand-frontend/50"
-                  : "hover:shadow-[0_0_30px_rgba(28,60,62,0.4)] hover:border-brand-agent"
+                ? "hover:shadow-[0_0_30px_rgba(97,218,251,0.2)] hover:border-brand-frontend/50"
+                : "hover:shadow-[0_0_30px_rgba(28,60,62,0.4)] hover:border-brand-agent"
                 }`}
             >
               {project.image && (
@@ -70,7 +70,7 @@ const Projects = () => {
 
               <div className="p-6 flex flex-col flex-1">
                 <h3 className="text-white text-xl font-bold">{project.name}</h3>
-                <p className="text-muted text-sm mt-1 mb-4 flex-1">
+                <p className="text-subtle text-sm mt-1 mb-4 flex-1">
                   {project.intro || project.description}
                 </p>
 
@@ -141,9 +141,9 @@ const Projects = () => {
 
       {/* Secondary Projects - Compact Cards */}
       {secondaryProjects.length > 0 && (
-        <section className="flex flex-col gap-4" id="other-projects">
+        <section className="py-6" id="other-projects">
           <motion.h2
-            className="text-white text-[28px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5"
+            className="text-white text-[28px] font-bold leading-tight tracking-[-0.015em] mb-6"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -167,7 +167,7 @@ const Projects = () => {
                   }`}
               >
                 <h3 className="text-white text-lg font-bold">{project.name}</h3>
-                <p className="text-muted text-sm font-normal leading-normal">
+                <p className="text-subtle text-sm font-normal leading-normal">
                   {project.intro || project.description}
                 </p>
 
@@ -214,11 +214,14 @@ const Projects = () => {
         <section className="flex flex-col gap-4 px-4" id="archived-projects">
           <motion.button
             onClick={() => setShowArchived(!showArchived)}
-            className="mt-4 px-4 py-3 text-sm font-medium text-muted hover:text-white border border-border rounded-lg hover:border-brand-frontend/50 transition-colors flex items-center justify-center gap-2 w-full md:w-auto md:mx-auto md:px-8"
+            className="mt-4 px-4 py-2 text-sm font-medium text-subtle hover:text-white border border-border rounded-lg hover:border-brand-frontend/50 transition-colors flex items-center justify-center gap-2 w-full md:w-auto md:mx-auto md:px-8"
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.99 }}
           >
-            <span>{showArchived ? "Hide" : "Show"} More Projects ({archivedProjects.length})</span>
+            <span>{showArchived ? "Hide" : "Show More"}
+              {/* Projects */}
+              {/* ({archivedProjects.length}) */}
+            </span>
             <motion.span
               animate={{ rotate: showArchived ? 180 : 0 }}
               transition={{ duration: 0.2 }}
@@ -246,7 +249,7 @@ const Projects = () => {
                     className="flex flex-col gap-2 rounded-lg border border-border bg-overlay/50 p-4 transition-all duration-300 hover:border-brand-agent/50 hover:bg-tungsten/50"
                   >
                     <h4 className="text-white text-base font-semibold">{project.name}</h4>
-                    <p className="text-muted text-xs leading-normal line-clamp-2">
+                    <p className="text-subtle text-xs leading-normal line-clamp-2">
                       {project.description}
                     </p>
 
@@ -264,7 +267,7 @@ const Projects = () => {
                       {project.githubLink && (
                         <a
                           href={project.githubLink}
-                          className="text-xs font-medium text-muted hover:text-brand-frontend hover:underline"
+                          className="text-xs font-medium text-subtle hover:text-brand-frontend hover:underline"
                           target="_blank"
                           rel="noopener noreferrer"
                         >

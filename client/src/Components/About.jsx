@@ -4,7 +4,7 @@ import TechStack from "./TechStack";
 
 const About = () => {
   return (
-    <section id="about" className="p-4">
+    <section id="about" className="py-6">
       <motion.h2
         className="text-white text-[28px] font-bold mb-6"
         initial={{ opacity: 0, x: -20 }}

@@ -13,7 +13,7 @@
   --color-border: #2d5d61;
   --color-brand-frontend: #61dafb;
   --color-brand-agent: #1c3c3e;
-  --color-muted: #e8e6e3;
+  --color-subtle: #e8e6e3;
 }
 
 /* Tailwind v4 theme extension */
@@ -24,5 +24,9 @@
   --color-border: #2d5d61;
   --color-brand-frontend: #61dafb;
   --color-brand-agent: #1c3c3e;
-  --color-muted: #e8e6e3;
+  --color-subtle: #e8e6e3;
+}
+
+.button {
+  margin: revert;
 }

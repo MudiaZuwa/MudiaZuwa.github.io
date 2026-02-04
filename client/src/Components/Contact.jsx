@@ -61,9 +61,9 @@ const Contact = () => {
 
   return (
     <>
-      <section className="flex flex-col gap-4" id="contact">
+      <section className="py-6" id="contact">
         <motion.h2
-          className="text-white text-[28px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5"
+          className="text-white text-[28px] font-bold mb-6"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -79,7 +79,7 @@ const Contact = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="rounded-xl border border-border bg-overlay/70 py-8">
+          <div className="rounded-xl border border-border bg-overlay/70 py-8 px-2">
             <p className="text-center text-[#E0E0E0] mb-8 max-w-xl mx-auto">
               Have a project in mind or just want to say hello? My inbox is
               always open. Fill out the form below, and I'll get back to you as
@@ -95,7 +95,7 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="flex-1 bg-tungsten/80 border border-border text-white rounded-lg px-4 py-2 focus:ring-brand-frontend focus:border-brand-frontend placeholder:text-muted transition-colors"
+                  className="flex-1 bg-tungsten/80 border border-border text-white rounded-lg px-4 py-2 focus:ring-brand-frontend focus:border-brand-frontend placeholder:text-subtle transition-colors"
                   placeholder="Your Name"
                   type="text"
                 />
@@ -103,7 +103,7 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="flex-1 bg-tungsten/80 border border-border text-white rounded-lg px-4 py-2 focus:ring-brand-frontend focus:border-brand-frontend placeholder:text-muted transition-colors"
+                  className="flex-1 bg-tungsten/80 border border-border text-white rounded-lg px-4 py-2 focus:ring-brand-frontend focus:border-brand-frontend placeholder:text-subtle transition-colors"
                   placeholder="Your Email"
                   type="email"
                 />
@@ -113,7 +113,7 @@ const Contact = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="bg-tungsten/80 border border-border text-white rounded-lg px-4 py-2 focus:ring-brand-frontend focus:border-brand-frontend placeholder:text-muted transition-colors"
+                className="bg-tungsten/80 border border-border text-white rounded-lg px-4 py-2 focus:ring-brand-frontend focus:border-brand-frontend placeholder:text-subtle transition-colors"
                 placeholder="Your Message"
                 rows="5"
               ></textarea>
@@ -155,7 +155,7 @@ const Contact = () => {
             href="https://github.com/MudiaZuwa"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted hover:text-brand-frontend transition-colors"
+            className="text-subtle hover:text-brand-frontend transition-colors"
           >
             <FontAwesomeIcon icon={faGithub} size="lg" />
           </a>
@@ -163,7 +163,7 @@ const Contact = () => {
             href="https://www.linkedin.com/in/mudiazuwa"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted hover:text-brand-frontend transition-colors"
+            className="text-subtle hover:text-brand-frontend transition-colors"
           >
             <FontAwesomeIcon icon={faLinkedin} size="lg" />
           </a>
@@ -171,13 +171,13 @@ const Contact = () => {
             href="https://x.com/mudia_zuwa"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted hover:text-brand-frontend transition-colors"
+            className="text-subtle hover:text-brand-frontend transition-colors"
           >
             <FontAwesomeIcon icon={faTwitter} size="lg" />
           </a>
         </div>
 
-        <p className="text-sm text-muted">
+        <p className="text-sm text-subtle">
           © {new Date().getFullYear()} Mudia Osazuwa. All Rights Reserved.
         </p>
       </motion.footer>

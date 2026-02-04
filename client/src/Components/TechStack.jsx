@@ -52,7 +52,7 @@ const TechStack = () => {
             whileHover={{ scale: 1.05, y: -5 }}
           >
             <img src={t.img} alt={t.name} className="h-12 w-12" />
-            <p className="text-sm text-muted">{t.name}</p>
+            <p className="text-sm text-subtle">{t.name}</p>
           </motion.div>
         ))}
       </motion.div>
@@ -77,7 +77,7 @@ const TechStack = () => {
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <img src={t.img} alt={t.name} className="h-12 w-12" />
-                <p className="text-sm text-muted">{t.name}</p>
+                <p className="text-sm text-subtle">{t.name}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -88,7 +88,7 @@ const TechStack = () => {
       {secondaryTechs.length > 0 && (
         <motion.button
           onClick={() => setShowMore(!showMore)}
-          className="mt-10 px-4 py-2 text-sm font-medium text-muted hover:text-white border border-border rounded-lg hover:border-brand-frontend/50 transition-colors flex items-center gap-2 mx-auto"
+          className="mt-10 px-4 py-2 text-sm font-medium text-subtle hover:text-white border border-border rounded-lg hover:border-brand-frontend/50 transition-colors flex items-center gap-2 mx-auto"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >

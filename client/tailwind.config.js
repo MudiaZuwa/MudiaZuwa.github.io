@@ -11,7 +11,7 @@ export default {
         border: "#2d5d61",
         "brand-frontend": "#61dafb",
         "brand-agent": "#1c3c3e",
-        muted: "#e8e6e3",
+        subtle: "#e8e6e3",
       },
       fontFamily: {
         display: ["Space Grotesk", "sans-serif"],

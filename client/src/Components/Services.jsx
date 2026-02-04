@@ -40,7 +40,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="p-4">
+    <section id="services" className="py-6">
       <motion.h2
         className="text-white text-[28px] font-bold mb-6"
         initial={{ opacity: 0, x: -20 }}
@@ -69,7 +69,7 @@ const Services = () => {
               {service.icon}
             </span>
             <h3 className="text-lg font-bold mt-3">{service.title}</h3>
-            <p className="text-muted text-sm mt-2">{service.desc}</p>
+            <p className="text-subtle text-sm mt-2">{service.desc}</p>
           </motion.div>
         ))}
       </motion.div>

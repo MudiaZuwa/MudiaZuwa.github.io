@@ -124,7 +124,7 @@ const ChatWindow = () => {
               <h3 className="text-white font-semibold text-sm">Ask Mudia AI</h3>
               <span
                 onClick={() => setIsOpen(false)}
-                className="material-symbols-outlined text-muted text-lg cursor-pointer hover:text-brand-frontend transition"
+                className="material-symbols-outlined text-subtle text-lg cursor-pointer hover:text-brand-frontend transition"
               >
                 close
               </span>
