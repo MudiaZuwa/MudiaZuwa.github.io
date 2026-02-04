@@ -7,6 +7,9 @@ import Contact from "@/Components/Contact";
 import Services from "@/Components/Services";
 import ChatWindow from "@/Components/ChatWindow";
 import Title from "@/Components/Title";
+import { Container } from "react-bootstrap";
+
+
 
 export default function HomePage() {
     return (
@@ -14,18 +17,18 @@ export default function HomePage() {
             <div className="top">
                 <Topbar />
                 <div className="titleBody">
-                    <div className="container ">
+                    <Container>
                         <Title />
-                    </div>
+                    </Container>
                 </div>
             </div>
-            <div className="container ">
+            <Container>
                 <Services />
                 <Projects />
                 <About />
                 <ChatWindow />
                 <Contact />
-            </div>
+            </Container>
         </div>
     );
 }

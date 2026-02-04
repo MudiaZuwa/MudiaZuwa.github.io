@@ -73,7 +73,6 @@ const Contact = () => {
         </motion.h2>
 
         <motion.div
-          className="p-4"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}

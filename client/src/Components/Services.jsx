@@ -40,7 +40,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-6">
+    <section className="py-6" id="services">
       <motion.h2
         className="text-white text-[28px] font-bold mb-6"
         initial={{ opacity: 0, x: -20 }}
@@ -51,7 +51,7 @@ const Services = () => {
         What I Do
       </motion.h2>
       <motion.div
-        className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 p-4"
+        className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 "
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
