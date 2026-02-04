@@ -51,7 +51,7 @@ const Services = () => {
         What I Do
       </motion.h2>
       <motion.div
-        className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4"
+        className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 p-4"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
