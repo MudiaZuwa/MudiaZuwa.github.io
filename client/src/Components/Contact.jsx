@@ -73,13 +73,13 @@ const Contact = () => {
         </motion.h2>
 
         <motion.div
-          className="py-4"
+          className="p-4"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="rounded-xl border border-border bg-overlay/70 p-8">
+          <div className="rounded-xl border border-border bg-overlay/70 py-8">
             <p className="text-center text-[#E0E0E0] mb-8 max-w-xl mx-auto">
               Have a project in mind or just want to say hello? My inbox is
               always open. Fill out the form below, and I'll get back to you as

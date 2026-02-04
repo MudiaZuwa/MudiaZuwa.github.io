@@ -1,12 +1,10 @@
 import React from "react";
 import Head from "next/head";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Topbar from "@/Components/Topbar";
 import About from "@/Components/About";
 import Projects from "@/Components/Projects";
 import Contact from "@/Components/Contact";
 import Services from "@/Components/Services";
-import { Container } from "react-bootstrap";
 import ChatWindow from "@/Components/ChatWindow";
 import Title from "@/Components/Title";
 
@@ -88,18 +86,18 @@ const App = () => {
         <div className="top">
           <Topbar />
           <div className="titleBody">
-            <Container>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
               <Title />
-            </Container>
+            </div>
           </div>
         </div>
-        <Container>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <Services />
           <Projects />
           <About />
           <ChatWindow />
           <Contact />
-        </Container>
+        </div>
       </div>
     </>
   );
