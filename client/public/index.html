@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -97,6 +97,18 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+    <script
+      defer
+      src="https://tracker.revvy-v2.workers.dev/ga.iife.js"
+    ></script>
+    <script>
+      window.EULAV_SITE_ID = "4e69bad1-c966-4f40-922e-8afb3c9c475a";
+      window.addEventListener("load", function () {
+        if (window.startEulavTracker) {
+          window.startEulavTracker();
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
