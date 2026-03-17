@@ -54,6 +54,15 @@ export default function RootLayout({ children }) {
                         }),
                     }}
                 />
+                <script defer src="https://tracker.revvy-v2.workers.dev/ga.iife.js"></script>
+    <script>
+      window.EULAV_SITE_ID = "4e69bad1-c966-4f40-922e-8afb3c9c475a";
+      window.addEventListener("load", function () {
+          if (window.startEulavTracker) {
+          window.startEulavTracker();
+        }
+      });
+    </script>
             </head>
             <body>{children}</body>
         </html>
