@@ -54,15 +54,15 @@ export default function RootLayout({ children }) {
                         }),
                     }}
                 />
-                <script defer src="https://tracker.revvy-v2.workers.dev/ga.iife.js"></script>
+                <script defer src="https://tracker-dev.revvy-v2.workers.dev/ga.iife.js"></script>
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `window.EULAV_SITE_ID = "4e69bad1-c966-4f40-922e-8afb3c9c475a";
-window.addEventListener("load", function () {
-  if (window.startEulavTracker) {
-    window.startEulavTracker();
-  }
-});`,
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () { if (window.startEulavTracker) window.startEulavTracker(); });
+} else {
+  if (window.startEulavTracker) window.startEulavTracker();
+}`,
                     }}
                 />
             </head>
