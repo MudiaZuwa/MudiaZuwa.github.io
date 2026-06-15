@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
                         }),
                     }}
                 />
-                <script defer src="https://tracker.revvy-v2.workers.dev/ga.iife.js"></script>
+                <script defer src="https://tracker-dev.revvy-v2.workers.dev/ga.iife.js"></script>
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `window.EULAV_SITE_ID = "4e69bad1-c966-4f40-922e-8afb3c9c475a";
