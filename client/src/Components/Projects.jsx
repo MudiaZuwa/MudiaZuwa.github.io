@@ -75,7 +75,7 @@ const Projects = () => {
     <section id="work" className="relative">
       <div className="mx-auto max-w-[1400px] px-4 lg:px-8 pt-32 pb-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-          <h2 className="text-5xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight">
             Selected work
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -186,7 +186,7 @@ const ProjectCard = ({ project, index }) => {
             transition={{ duration: 0.6, ease: EASE_OUT }}
           >
             <p className="text-sm text-brand-frontend font-mono mb-6">{num}</p>
-            <h3 className="text-6xl md:text-8xl font-bold text-white leading-[0.95] tracking-tight">
+            <h3 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight break-words">
               {project.name}
             </h3>
             <p className="mt-8 max-w-[55ch] text-lg md:text-xl text-subtle leading-relaxed">
