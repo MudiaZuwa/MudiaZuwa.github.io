@@ -144,7 +144,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={status.loading}
-              className="self-start bg-brand-frontend text-oil-black px-6 py-3 rounded-lg font-medium disabled:opacity-50"
+              className="press self-start bg-brand-frontend text-oil-black px-6 py-3 rounded-lg font-medium disabled:opacity-50"
             >
               {status.loading ? "Sending" : "Send message"}
             </button>

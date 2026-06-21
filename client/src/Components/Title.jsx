@@ -1,16 +1,42 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
 
 const ComputersCanvas = dynamic(() => import("@/Components/3DComponent"), {
   ssr: false,
+  loading: () => <CanvasPlaceholder />,
 });
 
 const EASE_OUT = [0.23, 1, 0.32, 1];
 
+const CanvasPlaceholder = () => (
+  <div
+    aria-hidden
+    className="w-full h-full rounded-lg"
+    style={{
+      background:
+        "radial-gradient(80% 60% at 70% 40%, rgba(97,218,251,0.06) 0%, transparent 70%)",
+    }}
+  />
+);
+
 const Title = () => {
   const reduce = useReducedMotion();
+  const [mountCanvas, setMountCanvas] = useState(false);
+
+  useEffect(() => {
+    const idle =
+      typeof window.requestIdleCallback === "function"
+        ? window.requestIdleCallback
+        : (cb) => setTimeout(cb, 200);
+    const cancel =
+      typeof window.cancelIdleCallback === "function"
+        ? window.cancelIdleCallback
+        : clearTimeout;
+    const id = idle(() => setMountCanvas(true), { timeout: 1500 });
+    return () => cancel(id);
+  }, []);
 
   const reveal = (delay = 0) => ({
     initial: reduce ? false : { opacity: 0, y: 24 },
@@ -47,14 +73,14 @@ const Title = () => {
         >
           <a
             href="#work"
-            className="inline-flex items-center gap-2 bg-brand-frontend text-oil-black px-6 py-3 rounded-lg font-medium text-base"
+            className="press inline-flex items-center gap-2 bg-brand-frontend text-oil-black px-6 py-3 rounded-lg font-medium text-base"
           >
             View work
             <span aria-hidden>&rarr;</span>
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 border border-brand-frontend text-white px-6 py-3 rounded-lg font-medium text-base hover-cyan"
+            className="press inline-flex items-center gap-2 border border-brand-frontend text-white px-6 py-3 rounded-lg font-medium text-base hover-cyan"
           >
             Get in touch
           </a>
@@ -63,7 +89,7 @@ const Title = () => {
 
       <div className="col-span-12 lg:col-span-5 relative min-h-[50vh] lg:min-h-0">
         <div className="absolute inset-0 lg:inset-auto lg:right-0 lg:bottom-0 lg:top-0 lg:w-[120%] -z-0">
-          <ComputersCanvas />
+          {mountCanvas ? <ComputersCanvas /> : <CanvasPlaceholder />}
         </div>
       </div>
     </section>

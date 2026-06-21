@@ -23,7 +23,7 @@ const Topbar = () => {
         </a>
         <a
           href="#contact"
-          className="text-sm font-medium text-oil-black bg-brand-frontend px-4 py-2 rounded-lg"
+          className="press text-sm font-medium text-oil-black bg-brand-frontend px-4 py-2 rounded-lg"
         >
           Get in touch
         </a>

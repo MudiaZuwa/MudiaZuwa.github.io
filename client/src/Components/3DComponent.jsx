@@ -1,13 +1,21 @@
 import React, { Suspense, useEffect, useState, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Preload, useGLTF } from "@react-three/drei";
-import { useScroll } from "framer-motion";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import { useScroll, useReducedMotion } from "framer-motion";
 import CanvasLoader from "./Loader";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("/desktop_pc/scene.glb");
   const ref = useRef();
   const { scrollY } = useScroll();
+  const { invalidate } = useThree();
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (reduce) return undefined;
+    const unsub = scrollY.on("change", () => invalidate());
+    return () => unsub();
+  }, [scrollY, invalidate, reduce]);
 
   useFrame(() => {
     if (ref.current) {
@@ -20,13 +28,6 @@ const Computers = ({ isMobile }) => {
       <ambientLight intensity={1.2} />
       <directionalLight position={[10, 10, 5]} intensity={2.5} />
       <pointLight position={[0, 5, 5]} intensity={1.5} />
-      <spotLight
-        position={[-10, 15, 10]}
-        angle={0.3}
-        penumbra={1}
-        intensity={1.2}
-        castShadow
-      />
 
       <primitive
         ref={ref}
@@ -43,25 +44,18 @@ const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-    return () =>
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const onChange = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
   return (
     <Canvas
-      frameloop="always"
-      shadows
-      dpr={[1, 2]}
+      frameloop="demand"
+      dpr={[1, 1.5]}
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true }}
       style={{
         width: "100%",
         height: "100%",
@@ -71,7 +65,6 @@ const ComputersCanvas = () => {
       <Suspense fallback={<CanvasLoader />}>
         <Computers isMobile={isMobile} />
       </Suspense>
-      <Preload all />
     </Canvas>
   );
 };

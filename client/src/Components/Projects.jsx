@@ -152,7 +152,7 @@ const FilterPill = ({ active, onClick, children }) => (
   <button
     type="button"
     onClick={onClick}
-    className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+    className={`press relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${
       active ? "text-oil-black" : "text-subtle/80 hover-cyan"
     }`}
   >
