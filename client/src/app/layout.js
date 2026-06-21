@@ -1,5 +1,13 @@
 import "@/index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "@/animations.css";
+import { Space_Grotesk } from "next/font/google";
+
+const displayFont = Space_Grotesk({
+    subsets: ["latin"],
+    weight: ["400", "500", "700"],
+    display: "swap",
+    variable: "--font-display",
+});
 
 export const metadata = {
     title: "Osamudiamen E. Osazuwa (Mudia Zuwa) | Web Developer Portfolio",
@@ -25,12 +33,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html lang="en" className={displayFont.variable}>
             <head>
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-                    rel="stylesheet"
-                />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -66,7 +70,7 @@ if (document.readyState === "loading") {
                     }}
                 />
             </head>
-            <body>{children}</body>
+            <body className="bg-oil-black text-subtle">{children}</body>
         </html>
     );
 }

@@ -1,24 +1,17 @@
 import React, { Suspense, useEffect, useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { Preload, useGLTF } from "@react-three/drei";
+import { useScroll } from "framer-motion";
 import CanvasLoader from "./Loader";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("/desktop_pc/scene.glb");
   const ref = useRef();
-  const scrollY = useRef(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      scrollY.current = window.scrollY;
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollY } = useScroll();
 
   useFrame(() => {
     if (ref.current) {
-      ref.current.rotation.y = scrollY.current * 0.003;
+      ref.current.rotation.y = scrollY.get() * 0.0025;
     }
   });
 
@@ -38,9 +31,9 @@ const Computers = ({ isMobile }) => {
       <primitive
         ref={ref}
         object={computer.scene}
-        scale={isMobile ? 0.4 : 0.85}
-        position={isMobile ? [0, -2.5, -1.2] : [0, -2.8, -1.3]}
-        rotation={[-0.05, -0.25, -0.05]}
+        scale={isMobile ? 0.45 : 0.6}
+        position={isMobile ? [0, -2.2, -1.0] : [1.2, -2.2, -1.0]}
+        rotation={[-0.05, -0.35, -0.05]}
       />
     </>
   );
@@ -50,7 +43,7 @@ const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
     setIsMobile(mediaQuery.matches);
 
     const handleMediaQueryChange = (event) => {
@@ -72,20 +65,12 @@ const ComputersCanvas = () => {
       style={{
         width: "100%",
         height: "100%",
+        pointerEvents: "none",
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-          // autoRotate
-          // autoRotateSpeed={1.2}
-        />
         <Computers isMobile={isMobile} />
       </Suspense>
-
       <Preload all />
     </Canvas>
   );

@@ -1,34 +1,29 @@
 "use client";
 
 import Topbar from "@/Components/Topbar";
-import About from "@/Components/About";
-import Projects from "@/Components/Projects";
-import Contact from "@/Components/Contact";
-import Services from "@/Components/Services";
-import ChatWindow from "@/Components/ChatWindow";
 import Title from "@/Components/Title";
-import { Container } from "react-bootstrap";
-
-
+import Projects from "@/Components/Projects";
+import About from "@/Components/About";
+import TechStack from "@/Components/TechStack";
+import Contact from "@/Components/Contact";
+import ChatWindow from "@/Components/ChatWindow";
 
 export default function HomePage() {
     return (
-        <div className="bg-oil-black font-display text-[#E0E0E0]">
-            <div className="top">
-                <Topbar />
-                <div className="titleBody">
-                    <Container>
-                        <Title />
-                    </Container>
+        <div className="bg-oil-black text-subtle font-display">
+            <Topbar />
+            <main>
+                <div className="mx-auto max-w-[1400px]">
+                    <Title />
                 </div>
-            </div>
-            <Container>
-                <Services />
                 <Projects />
-                <About />
-                <ChatWindow />
+                <div className="mx-auto max-w-[1400px]">
+                    <About />
+                </div>
+                <TechStack />
                 <Contact />
-            </Container>
+            </main>
+            <ChatWindow />
         </div>
     );
 }

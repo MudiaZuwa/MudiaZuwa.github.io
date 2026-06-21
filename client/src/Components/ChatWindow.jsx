@@ -97,16 +97,26 @@ const ChatWindow = () => {
         {!isOpen && (
           <motion.div
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 bg-gradient-to-r from-brand-agent to-brand-frontend text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg hover:opacity-90 transition-all z-40 cursor-pointer"
-            initial={{ scale: 0, opacity: 0 }}
+            className="fixed bottom-6 right-6 bg-brand-frontend text-oil-black w-14 h-14 flex items-center justify-center rounded-full z-40 cursor-pointer"
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+            aria-label="Open chat"
           >
-            <span className="material-symbols-outlined text-2xl cursor-pointer">
-              chat
-            </span>
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
           </motion.div>
         )}
       </AnimatePresence>
@@ -114,20 +124,35 @@ const ChatWindow = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-0 right-0 md:bottom-6 md:right-6 w-full h-[70vh] sm:w-[380px] sm:h-[480px] bg-tungsten/95 backdrop-blur-md border-t border-border md:border md:rounded-2xl shadow-lg flex flex-col overflow-hidden z-50"
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            className="fixed bottom-0 right-0 md:bottom-6 md:right-6 w-full h-[70vh] sm:w-[380px] sm:h-[480px] bg-tungsten border-t border-border/40 md:border md:rounded-lg flex flex-col overflow-hidden z-50"
+            initial={{ opacity: 0, y: 20, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 50, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, y: 20, scale: 0.97 }}
+            transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-overlay/50">
-              <h3 className="text-white font-semibold text-sm">Ask Mudia AI</h3>
-              <span
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border/40">
+              <h3 className="text-white font-medium text-sm">Ask Mudia AI</h3>
+              <button
+                type="button"
                 onClick={() => setIsOpen(false)}
-                className="material-symbols-outlined text-subtle text-lg cursor-pointer hover:text-brand-frontend transition"
+                aria-label="Close chat"
+                className="text-subtle/70 hover:text-brand-frontend transition-colors"
               >
-                close
-              </span>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
             </div>
 
             <div
@@ -139,7 +164,7 @@ const ChatWindow = () => {
                   M
                 </div>
                 <div className="bg-overlay text-white text-sm px-3 py-2 rounded-lg max-w-[75%]">
-                  Hey there — I'm Mudia's portfolio assistant! How can I help
+                  Hey there, I'm Mudia's portfolio assistant. How can I help
                   you?
                 </div>
               </div>
@@ -153,7 +178,7 @@ const ChatWindow = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="bg-gradient-to-r from-brand-agent to-brand-frontend text-white text-sm px-3 py-2 rounded-lg max-w-[75%]">
+                    <div className="bg-brand-frontend text-oil-black text-sm px-3 py-2 rounded-lg max-w-[75%]">
                       {msg.content}
                     </div>
                   </motion.div>
@@ -178,18 +203,18 @@ const ChatWindow = () => {
             </div>
 
             <form
-              className="p-3 border-t border-border bg-overlay/50 flex items-center gap-2"
+              className="p-3 border-t border-border/40 flex items-center gap-2"
               onSubmit={sendMessage}
             >
               <input
                 type="text"
-                placeholder="Type a message..."
+                placeholder="Type a message"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="flex-1 bg-transparent outline-none text-sm text-white placeholder-muted"
+                className="flex-1 bg-transparent outline-none text-sm text-white placeholder:text-subtle/50"
               />
               <button
-                className="bg-gradient-to-r from-brand-agent to-brand-frontend px-3 py-2 rounded-lg text-white text-sm font-medium hover:opacity-90 transition disabled:opacity-50"
+                className="bg-brand-frontend text-oil-black px-3 py-2 rounded-lg text-sm font-medium disabled:opacity-50"
                 type="submit"
                 disabled={loading}
               >

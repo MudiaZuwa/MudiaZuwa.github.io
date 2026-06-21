@@ -1,57 +1,71 @@
+"use client";
 import React from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const ComputersCanvas = dynamic(() => import("@/Components/3DComponent"), {
   ssr: false,
 });
 
+const EASE_OUT = [0.23, 1, 0.32, 1];
+
 const Title = () => {
+  const reduce = useReducedMotion();
+
+  const reveal = (delay = 0) => ({
+    initial: reduce ? false : { opacity: 0, y: 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay, ease: EASE_OUT },
+  });
+
   return (
     <section
       id="home"
-      className="relative flex flex-col items-center justify-center min-h-[600px] px-4 py-10 overflow-hidden rounded-xl"
+      className="relative grid grid-cols-12 gap-6 min-h-[100dvh] pt-24 pb-12 px-4 lg:px-8"
     >
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
-        <ComputersCanvas />
+      <div className="col-span-12 lg:col-span-7 flex flex-col justify-center z-10">
+        <motion.h1
+          {...reveal(0)}
+          className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] text-white tracking-tight"
+        >
+          Building the web,{" "}
+          <em className="not-italic md:italic font-medium text-brand-frontend leading-[1.1] inline-block pb-1">
+            end to end.
+          </em>
+        </motion.h1>
+
+        <motion.p
+          {...reveal(0.06)}
+          className="mt-8 max-w-[58ch] text-lg md:text-xl text-subtle leading-relaxed"
+        >
+          Full-stack developer shipping AI agents, real-time apps, and 3D experiences. Currently open to collaborations.
+        </motion.p>
+
+        <motion.div
+          {...reveal(0.12)}
+          className="mt-10 flex flex-wrap items-center gap-4"
+        >
+          <a
+            href="#work"
+            className="inline-flex items-center gap-2 bg-brand-frontend text-oil-black px-6 py-3 rounded-lg font-medium text-base"
+          >
+            View work
+            <span aria-hidden>&rarr;</span>
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 border border-brand-frontend text-white px-6 py-3 rounded-lg font-medium text-base hover-cyan"
+          >
+            Get in touch
+          </a>
+        </motion.div>
       </div>
 
-      <div className="absolute inset-0 bg-oil-black/40 z-[1]" />
-
-      <motion.div
-        className="relative z-10 text-center"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <motion.h1
-          className="text-4xl md:text-6xl font-black bg-gradient-to-r from-brand-agent via-border to-brand-frontend bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Osamudiamen Osazuwa | Full-Stack Developer
-        </motion.h1>
-        <motion.p
-          className="text-lg md:text-xl mt-4 max-w-2xl mx-auto text-[#E0E0E0]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Crafting elegant, high-performance web experiences from concept to
-          deployment.
-        </motion.p>
-        <motion.a
-          href="#contact"
-          className="inline-flex mt-6 px-5 py-3 bg-gradient-to-r from-brand-agent to-brand-frontend text-white rounded-lg font-bold hover:scale-105 transition-transform duration-300 hover:shadow-[0_0_20px_rgba(97,218,251,0.5)]"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-        >
-          Contact Me
-        </motion.a>
-      </motion.div>
+      <div className="col-span-12 lg:col-span-5 relative min-h-[50vh] lg:min-h-0">
+        <div className="absolute inset-0 lg:inset-auto lg:right-0 lg:bottom-0 lg:top-0 lg:w-[120%] -z-0">
+          <ComputersCanvas />
+        </div>
+      </div>
     </section>
   );
 };

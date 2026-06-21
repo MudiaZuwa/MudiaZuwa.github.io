@@ -14,18 +14,16 @@ export default {
         subtle: "#e8e6e3",
       },
       fontFamily: {
-        display: ["Space Grotesk", "sans-serif"],
+        display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       borderRadius: {
         DEFAULT: "0.5rem",
         lg: "1rem",
-        xl: "1.5rem",
         full: "9999px",
       },
-      backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg, #1c3c3e 0%, #61dafb 100%)",
-        "brand-gradient-subtle":
-          "linear-gradient(135deg, #1c3c3e 0%, #2d5d61 50%, #61dafb 100%)",
+      transitionTimingFunction: {
+        "ease-out-strong": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "ease-inout-strong": "cubic-bezier(0.77, 0, 0.175, 1)",
       },
     },
   },

@@ -1,288 +1,272 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+"use client";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  getFeaturedProjects,
-  getSecondaryProjects,
+  getStackProjects,
   getArchivedProjects,
-} from "./ProjectList";
+  getAllNiches,
+} from "@/Components/ProjectList";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+const EASE_OUT = [0.23, 1, 0.32, 1];
+
+const NICHE_LABELS = {
+  fullstack: "Fullstack",
+  agent: "Agent",
+  realtime: "Realtime",
+  game: "Game",
+  web3: "Web3",
+};
 
 const Projects = () => {
-  const [showArchived, setShowArchived] = useState(false);
+  const reduce = useReducedMotion();
+  const stackRef = useRef(null);
+  const [filter, setFilter] = useState("all");
 
-  const featuredProjects = getFeaturedProjects();
-  const secondaryProjects = getSecondaryProjects();
-  const archivedProjects = getArchivedProjects();
+  const allProjects = useMemo(() => getStackProjects(), []);
+  const archived = useMemo(() => getArchivedProjects(), []);
+  const niches = useMemo(() => getAllNiches(), []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12 },
-    },
-  };
+  const filtered = useMemo(() => {
+    if (filter === "all") return allProjects;
+    return allProjects.filter((p) => p.niches?.includes(filter));
+  }, [filter, allProjects]);
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
+  useEffect(() => {
+    if (reduce || !stackRef.current) return;
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    if (!mediaQuery.matches) return;
+
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".stack-card");
+      cards.forEach((card, i) => {
+        if (i === cards.length - 1) return;
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top top",
+          endTrigger: cards[cards.length - 1],
+          end: "top top",
+          pin: true,
+          pinSpacing: false,
+        });
+        gsap.to(card, {
+          scale: 0.92,
+          opacity: 0.55,
+          ease: "none",
+          scrollTrigger: {
+            trigger: cards[i + 1],
+            start: "top bottom",
+            end: "top top",
+            scrub: true,
+          },
+        });
+      });
+    }, stackRef);
+    return () => ctx.revert();
+  }, [reduce, filtered.length]);
 
   return (
-    <div>
-      {/* Featured Projects - Full Cards */}
-      <section className="py-6" id="projects">
-        <motion.h2
-          className="text-white text-[28px] font-bold mb-6"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          Featured Projects
-        </motion.h2>
-
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 "
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {featuredProjects.map((project, index) => (
-            <motion.div
-              key={project.name}
-              variants={cardVariants}
-              className={`flex flex-col gap-4 rounded-xl border border-border bg-overlay/70 overflow-hidden group transition-all duration-300 ${index % 2 === 0
-                ? "hover:shadow-[0_0_30px_rgba(97,218,251,0.2)] hover:border-brand-frontend/50"
-                : "hover:shadow-[0_0_30px_rgba(28,60,62,0.4)] hover:border-brand-agent"
-                }`}
-            >
-              {project.image && (
-                <img
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  src={project.image}
-                  alt={project.name}
-                />
-              )}
-
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-white text-xl font-bold">{project.name}</h3>
-                <p className="text-subtle text-sm mt-1 mb-4 flex-1">
-                  {project.intro || project.description}
-                </p>
-
-                {project.code && project.code.length > 0 && (
-                  <div className="flex items-center gap-3 mb-4 flex-wrap">
-                    {project.code.map((CodeIcon, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs font-medium text-[#E0E0E0] bg-brand-agent/50 px-2 py-1 rounded"
-                      >
-                        <img
-                          src={CodeIcon}
-                          className="w-3 h-3 sm:w-5 sm:h-5 object-contain"
-                          alt="tech-icon"
-                        />
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                <div className="flex items-center gap-4 mt-auto flex-wrap">
-                  {project.pageLink && (
-                    <a
-                      href={project.pageLink}
-                      className="text-sm font-medium text-brand-frontend hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Live Site
-                    </a>
-                  )}
-                  {project.npmLink && (
-                    <a
-                      href={project.npmLink}
-                      className="text-sm font-medium text-brand-agent hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      NPM
-                    </a>
-                  )}
-                  {project.downloadLink && (
-                    <a
-                      href={project.downloadLink}
-                      className="text-sm font-medium text-brand-frontend hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Download
-                    </a>
-                  )}
-                  {project.githubLink && (
-                    <a
-                      href={project.githubLink}
-                      className="text-sm font-medium text-brand-frontend hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      GitHub
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
-      {/* Secondary Projects - Compact Cards */}
-      {secondaryProjects.length > 0 && (
-        <section className="py-6" id="other-projects">
-          <motion.h2
-            className="text-white text-[28px] font-bold leading-tight tracking-[-0.015em] mb-6"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5 }}
-          >
-            Other Projects
-          </motion.h2>
-
-          <motion.div
-            className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            {secondaryProjects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                variants={cardVariants}
-                className={`flex flex-col gap-3 rounded-xl border border-border bg-overlay/70 p-6 transition-all duration-300 hover:bg-tungsten/70 ${index % 2 === 0 ? "hover:border-brand-frontend/50" : "hover:border-brand-agent"
-                  }`}
+    <section id="work" className="relative">
+      <div className="mx-auto max-w-[1400px] px-4 lg:px-8 pt-32 pb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <h2 className="text-5xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+            Selected work
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            <FilterPill active={filter === "all"} onClick={() => setFilter("all")}>
+              All
+            </FilterPill>
+            {niches.map((n) => (
+              <FilterPill
+                key={n}
+                active={filter === n}
+                onClick={() => setFilter(n)}
               >
-                <h3 className="text-white text-lg font-bold">{project.name}</h3>
-                <p className="text-subtle text-sm font-normal leading-normal">
-                  {project.intro || project.description}
-                </p>
-
-                <div className="flex items-center gap-4 mt-2 flex-wrap">
-                  {project.pageLink && (
-                    <a
-                      href={project.pageLink}
-                      className="text-sm font-medium text-brand-frontend hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Live Site
-                    </a>
-                  )}
-                  {project.githubLink && (
-                    <a
-                      href={project.githubLink}
-                      className="text-sm font-medium text-brand-frontend hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      GitHub
-                    </a>
-                  )}
-                  {project.downloadLink && (
-                    <a
-                      href={project.downloadLink}
-                      className="text-sm font-medium text-brand-frontend hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Download
-                    </a>
-                  )}
-                </div>
-              </motion.div>
+                {NICHE_LABELS[n] ?? n}
+              </FilterPill>
             ))}
-          </motion.div>
-        </section>
-      )}
+          </div>
+        </div>
+      </div>
 
-      {/* Archived Projects - Behind Show More */}
-      {archivedProjects.length > 0 && (
-        <section className="flex flex-col gap-4 px-4" id="archived-projects">
-          <motion.button
-            onClick={() => setShowArchived(!showArchived)}
-            className="mt-4 px-4 py-2 text-sm font-medium text-subtle hover:text-white border border-border rounded-lg hover:border-brand-frontend/50 transition-colors flex items-center justify-center gap-2 w-full md:w-auto md:mx-auto md:px-8"
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.99 }}
-          >
-            <span>{showArchived ? "Hide" : "Show More"}
-              {/* Projects */}
-              {/* ({archivedProjects.length}) */}
+      <div ref={stackRef} className="relative">
+        {filtered.map((project, i) => (
+          <ProjectCard key={project.name} project={project} index={i} />
+        ))}
+      </div>
+
+      <div className="mx-auto max-w-[1400px] px-4 lg:px-8 pt-24 pb-32">
+        <details className="group">
+          <summary className="cursor-pointer list-none flex items-center justify-between border-t border-border/40 pt-6">
+            <span className="text-2xl md:text-3xl font-medium text-white">
+              Archive
             </span>
-            <motion.span
-              animate={{ rotate: showArchived ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="material-symbols-outlined text-base"
-            >
-              expand_more
-            </motion.span>
-          </motion.button>
-
-          <AnimatePresence>
-            {showArchived && (
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
+            <span className="text-sm text-subtle/70 group-open:hidden">
+              Show {archived.length} more
+            </span>
+            <span className="hidden text-sm text-subtle/70 group-open:inline">
+              Hide
+            </span>
+          </summary>
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-6 mt-8">
+            {archived.map((p) => (
+              <li
+                key={p.name}
+                className="flex items-start justify-between gap-4 border-b border-border/20 pb-5"
               >
-                {archivedProjects.map((project) => (
-                  <motion.div
-                    key={project.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    className="flex flex-col gap-2 rounded-lg border border-border bg-overlay/50 p-4 transition-all duration-300 hover:border-brand-agent/50 hover:bg-tungsten/50"
+                <div className="min-w-0">
+                  <p className="text-white text-base font-medium truncate">
+                    {p.name}
+                  </p>
+                  <p className="text-sm text-subtle/70 mt-1 line-clamp-2">
+                    {(p.description ?? "").trim()}
+                  </p>
+                </div>
+                {p.pageLink && (
+                  <a
+                    href={p.pageLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${p.name}`}
+                    className="text-brand-frontend text-sm shrink-0"
                   >
-                    <h4 className="text-white text-base font-semibold">{project.name}</h4>
-                    <p className="text-subtle text-xs leading-normal line-clamp-2">
-                      {project.description}
-                    </p>
+                    Open &rarr;
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </details>
+      </div>
+    </section>
+  );
+};
 
-                    <div className="flex items-center gap-3 mt-auto pt-2">
-                      {project.pageLink && (
-                        <a
-                          href={project.pageLink}
-                          className="text-xs font-medium text-brand-frontend hover:underline"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Demo
-                        </a>
-                      )}
-                      {project.githubLink && (
-                        <a
-                          href={project.githubLink}
-                          className="text-xs font-medium text-subtle hover:text-brand-frontend hover:underline"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Code
-                        </a>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </section>
-      )}
-    </div>
+const FilterPill = ({ active, onClick, children }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+      active ? "text-oil-black" : "text-subtle/80 hover-cyan"
+    }`}
+  >
+    {active && (
+      <motion.span
+        layoutId="pill-bg"
+        className="absolute inset-0 bg-brand-frontend rounded-full -z-0"
+        transition={{ duration: 0.25, ease: EASE_OUT }}
+      />
+    )}
+    <span className="relative z-10">{children}</span>
+  </button>
+);
+
+const ProjectCard = ({ project, index }) => {
+  const reduce = useReducedMotion();
+  const link = project.pageLink || project.githubLink || project.npmLink;
+  const num = String(index + 1).padStart(2, "0");
+
+  return (
+    <article
+      className="stack-card relative min-h-[100dvh] flex items-center bg-oil-black"
+      style={{ zIndex: 10 + index }}
+    >
+      <div className="mx-auto max-w-[1400px] w-full px-4 lg:px-8 grid grid-cols-12 gap-6">
+        <div className="col-span-12 lg:col-span-7 flex flex-col justify-center">
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: EASE_OUT }}
+          >
+            <p className="text-sm text-brand-frontend font-mono mb-6">{num}</p>
+            <h3 className="text-6xl md:text-8xl font-bold text-white leading-[0.95] tracking-tight">
+              {project.name}
+            </h3>
+            <p className="mt-8 max-w-[55ch] text-lg md:text-xl text-subtle leading-relaxed">
+              {project.intro ?? (project.description ?? "").split("\n")[0]}
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              {(project.code ?? []).map((src, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-overlay border border-border/40"
+                >
+                  <Image
+                    src={src}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="opacity-80"
+                  />
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center gap-5">
+              {link && (
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-brand-frontend text-base font-medium border-b border-brand-frontend/40 pb-1"
+                >
+                  Visit project &rarr;
+                </a>
+              )}
+              {project.githubLink && project.pageLink && (
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-subtle/70 text-sm hover-cyan"
+                >
+                  GitHub
+                </a>
+              )}
+              {project.npmLink && (
+                <a
+                  href={project.npmLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-subtle/70 text-sm hover-cyan"
+                >
+                  npm
+                </a>
+              )}
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="col-span-12 lg:col-span-5 flex items-center justify-center">
+          <div
+            aria-hidden
+            className="w-full aspect-square max-w-[420px] rounded-lg border border-border/30 relative overflow-hidden"
+            style={{
+              background:
+                "radial-gradient(120% 80% at 80% 20%, rgba(97,218,251,0.08) 0%, transparent 60%), #0d0d0f",
+            }}
+          >
+            <span className="absolute top-6 left-6 text-xs font-mono text-subtle/40">
+              {(project.niches ?? []).map((n) => NICHE_LABELS[n] ?? n).join(" · ")}
+            </span>
+            <span className="absolute bottom-6 right-6 text-xs font-mono text-brand-frontend/60">
+              {num}
+            </span>
+            <span className="absolute inset-0 flex items-center justify-center text-white/10 text-[180px] font-bold leading-none select-none">
+              {project.name.charAt(0)}
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
   );
 };
 

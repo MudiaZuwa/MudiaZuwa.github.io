@@ -1,109 +1,67 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { getCoreTechs, getSecondaryTechs } from "../lib/techData";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.3 },
-  },
-};
+"use client";
+import React from "react";
+import Image from "next/image";
+import { techData } from "../lib/techData";
 
 const TechStack = () => {
-  const [showMore, setShowMore] = useState(false);
-  const coreTechs = getCoreTechs();
-  const secondaryTechs = getSecondaryTechs();
+  const half1 = techData.slice(0, Math.ceil(techData.length / 2));
+  const half2 = techData.slice(Math.ceil(techData.length / 2));
 
   return (
-    <div id="tech-stack" className="mt-10">
-      <motion.h2
-        className="text-white text-[28px] font-bold mb-6"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5 }}
-      >
-        My Toolbox
-      </motion.h2>
+    <section
+      id="toolbox"
+      aria-label="Toolbox"
+      className="relative py-32 border-t border-border/30 overflow-hidden"
+    >
+      <div className="mx-auto max-w-[1400px] px-4 lg:px-8 mb-16">
+        <h2 className="text-5xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+          Toolbox.
+        </h2>
+        <p className="mt-6 max-w-[55ch] text-lg text-subtle/80">
+          The tools I reach for, day to day. Some are old friends, others I am
+          still getting to know.
+        </p>
+      </div>
 
-      {/* Core Tech Stack */}
-      <motion.div
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        {coreTechs.map((t, i) => (
-          <motion.div
-            key={t.name}
-            variants={itemVariants}
-            className="flex flex-col items-center gap-2 p-4 rounded-lg bg-overlay/30 hover:bg-brand-agent/60 transition-colors border border-transparent hover:border-border"
-            whileHover={{ scale: 1.05, y: -5 }}
-          >
-            <img src={t.img} alt={t.name} className="h-12 w-12" />
-            <p className="text-sm text-subtle">{t.name}</p>
-          </motion.div>
+      <div className="marquee space-y-8" aria-hidden>
+        <MarqueeRow items={[...half1, ...half1, ...half1]} />
+        <MarqueeRow items={[...half2, ...half2, ...half2]} reverse />
+      </div>
+
+      <ul className="sr-only">
+        {techData.map((t) => (
+          <li key={t.name}>{t.name}</li>
         ))}
-      </motion.div>
-
-      {/* Show More Section */}
-      <AnimatePresence>
-        {showMore && (
-          <motion.div
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 mt-6"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {secondaryTechs.map((t) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                className="flex flex-col items-center gap-2 p-4 rounded-lg bg-overlay/30 hover:bg-brand-agent/60 transition-colors border border-transparent hover:border-border"
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <img src={t.img} alt={t.name} className="h-12 w-12" />
-                <p className="text-sm text-subtle">{t.name}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Show More/Less Button */}
-      {secondaryTechs.length > 0 && (
-        <motion.button
-          onClick={() => setShowMore(!showMore)}
-          className="mt-10 px-4 py-2 text-sm font-medium text-subtle hover:text-white border border-border rounded-lg hover:border-brand-frontend/50 transition-colors flex items-center gap-2 mx-auto"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <span>{showMore ? "Show Less" : "Show More"}</span>
-          <motion.span
-            animate={{ rotate: showMore ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-            className="material-symbols-outlined text-base"
-          >
-            expand_more
-          </motion.span>
-        </motion.button>
-      )}
-    </div>
+      </ul>
+    </section>
   );
 };
+
+const MarqueeRow = ({ items, reverse = false }) => (
+  <div className="overflow-hidden">
+    <div className={`marquee-track flex gap-12 w-max ${reverse ? "reverse" : ""}`}>
+      {items.map((t, i) => (
+        <span
+          key={`${t.name}-${i}`}
+          className="flex items-center gap-3 shrink-0"
+        >
+          <Image
+            src={t.img}
+            alt=""
+            width={32}
+            height={32}
+            className="opacity-70"
+          />
+          <span className="text-2xl md:text-3xl font-medium text-white/80 whitespace-nowrap">
+            {t.name}
+          </span>
+          <span className="text-2xl md:text-3xl text-brand-frontend/40 ml-6">
+            /
+          </span>
+        </span>
+      ))}
+    </div>
+  </div>
+);
 
 export default TechStack;

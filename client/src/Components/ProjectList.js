@@ -231,3 +231,18 @@ export const getFeaturedProjects = () => getProjectsByTier("featured");
 export const getSecondaryProjects = () => getProjectsByTier("secondary");
 export const getArchivedProjects = () => getProjectsByTier("archived");
 
+export const getAllProjects = () => ProjectList;
+
+export const getStackProjects = () =>
+  ProjectList.filter((p) => p.tier === "featured" || p.tier === "secondary");
+
+export const getAllNiches = () => {
+  const set = new Set();
+  for (const project of ProjectList) {
+    if (Array.isArray(project.niches)) {
+      project.niches.forEach((n) => set.add(n));
+    }
+  }
+  return Array.from(set);
+};
+
